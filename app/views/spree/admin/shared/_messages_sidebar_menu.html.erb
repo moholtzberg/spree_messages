@@ -1,0 +1,5 @@
+<% if can? [:admin, :support], Spree::Message %>
+<ul class="nav nav-sidebar">
+  <%= tab Spree::Message, url: spree.admin_messages_url, icon: 'envelope', label: Spree::Message.model_name.human(count: :many) %>
+</ul>
+<% end %>
