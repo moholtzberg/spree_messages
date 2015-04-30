@@ -7,14 +7,14 @@
 			<tr>
 				<th class="order-number"><%= Spree.t(:name) %></th>
 				<th class="order-date"><%= Spree.t(:email) %></th>
-				<th class="order-status"><%= Spree.t(:inquiry_date) %></th>
+				<th class="order-status"><%= Spree.t(:date) %></th>
 				<th class="order-payment-state"><%= Spree.t(:message_body) %></th>
 				<th class="order-shipment-state"><%= Spree.t(:complete) %></th>
 			</tr>
 		</thead>
 		
 		<tbody>
-		<% @user.inquiries.each do |f| %>
+		<% @user.messages.each do |f| %>
 			<tr class="<%= cycle('even', 'odd') %>">
 				<td><%= f.name %></td>
 				<td><%= f.email %></td>
