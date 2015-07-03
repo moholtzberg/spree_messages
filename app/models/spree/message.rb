@@ -5,6 +5,7 @@ class Spree::Message < ActiveRecord::Base
   # attr_accessor :user, :email, :message
   belongs_to :user, :class_name => Spree.user_class.to_s, :foreign_key => :email, :primary_key => :email
   belongs_to :order, :class_name => Spree::Order
+  belongs_to :taxon, :class_name => Spree::Taxon
   validates :name, presence: true
   validates :email, presence: true
   # validates :is_human, presence: true

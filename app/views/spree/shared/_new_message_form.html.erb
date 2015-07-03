@@ -1,5 +1,6 @@
 <% user = spree_current_user.nil? ? nil : spree_current_user %>
-<%= form_tag("/inquiries", method: "post") do %>
+<%= form_tag("/messages", method: "post") do %>
+	<input type ="hidden" name="form_submission[source]" id="source" value="contact">
 	<div class="form-group">
 		<label for="InputName">Your Name</label>
 		<input type="text" class="form-control" name="form_submission[name]" id="name" placeholder="Enter Name" value="<% if user && user.billing_address %><%= user.billing_address.full_name %><% end %>" required>
@@ -8,6 +9,16 @@
 	<div class="form-group">
 		<label for="InputEmail">Your Email</label>
 		<input type="email" class="form-control" id="email" name="form_submission[email]" placeholder="Enter Email" value="<%= user.email unless !user %>" required  >
+	</div>
+	
+	<div class="form-group">
+		<label for="InputPhone">Your Phone</label>
+		<input type="text" class="form-control" id="phone" name="form_submission[phone]" placeholder="Enter Phone Number">
+	</div>
+	
+	<div class="form-group">
+		<label for="InputCompnay">Your Company</label>
+		<input type="text" class="form-control" id="company" name="form_submission[company]" placeholder="Enter Company Name">
 	</div>
 	
 	<% if user && user.orders %>
@@ -22,13 +33,13 @@
 	<% else %>
 		<div class="form-group">
 			<label for="InputOrder">Order Number</label>
-			<input type="text" name="form_submission[order]" id="order" class="form-control" rows="5">
+			<input type="text" name="form_submission[order]" id="order" class="form-control">
 		</div>
 	<% end %>
 
 	<div class="form-group">
 		<label for="InputMessage">Message</label>
-		<textarea name="form_submission[message]" id="message" class="form-control" rows="5" required></textarea>
+		<textarea name="form_submission[message]" id="message" class="form-control" rows="3" required></textarea>
 	</div>
 
 	<div class="form-group">

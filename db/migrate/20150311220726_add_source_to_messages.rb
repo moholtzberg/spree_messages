@@ -1,4 +1,4 @@
-class AddPartNumberToProducts < ActiveRecord::Migration
+class AddSourceToMessages < ActiveRecord::Migration
   def change
     add_column :messages, :source, :string
     add_column :messages, :taxon_id, :integer

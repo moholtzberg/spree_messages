@@ -1,5 +1,6 @@
 <% user = spree_current_user.nil? ? nil : spree_current_user %>
 <%= form_tag("/messages", method: "post") do %>
+	<input type ="hidden" name="form_submission[source]" id="source" value="quote">
 	<div class="form-group">
 		<label for="InputName">Your Name</label>
 		<input type="text" class="form-control" name="form_submission[name]" id="name" placeholder="Enter Name" value="<% if user && user.billing_address %><%= user.billing_address.full_name %><% end %>" required>
@@ -16,8 +17,8 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="InputCompnay">Company / Organisation</label>
-		<input type="text" class="form-control" id="company" name="form_submission[company]" placeholder="Company or Organization name">
+		<label for="InputCompnay">Your Company</label>
+		<input type="text" class="form-control" id="company" name="form_submission[company]" placeholder="Enter Company Name">
 	</div>
 	
 	<div class="form-group">

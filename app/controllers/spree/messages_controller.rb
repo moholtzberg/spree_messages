@@ -5,20 +5,41 @@ class Spree::MessagesController < Spree::StoreController
   end
   
   def create
+    source = params[:form_submission][:source].sub!(/\s*[^A-z0-9]*\z/,'')
     
     name = params[:form_submission][:name].sub!(/\s*[^A-z0-9]*\z/,'')
     email = params[:form_submission][:email].sub!(/\s*[^A-z0-9]*\z/,'')
+    phone = params[:form_submission][:phone].sub!(/\s*[^A-z0-9]*\z/,'')
+    company = params[:form_submission][:company].sub!(/\s*[A-z0-9]*\z/,'')
     message = params[:form_submission][:message].sub!(/\s*[^A-z0-9]*\z/,'')
+    
+    if source == "contact"
+      order = params[:form_submission][:order].sub!(/\s*[A-z0-9]*\z/,'')
+      vendor = nil
+      product_type = nil
+    elsif source == "quote"
+      vendor = params[:form_submission][:vendor].sub!(/\s*[A-z0-9]*\z/,'')
+      product_type = params[:form_submission][:product_type].sub!(/\s*[A-z0-9]*\z/,'')
+      order = nil
+    end
     is_human = params[:form_submission][:is_human].sub!(/\s*[^0-9]*\z/,'')
+    
     puts "********************************************"
     puts "********************************************"
     puts "********************************************"
-    puts "++++ #{name} ++++"
-    puts "++++ #{email} ++++"
-    puts "++++ #{message} ++++"
+    puts "++++ Source: #{source} ++++"
+    puts "++++ Name: #{name} ++++"
+    puts "++++ Email: #{email} ++++"
+    puts "++++ Phone: #{phone} ++++"
+    puts "++++ Compnay: #{company} ++++"
+    puts "++++ Message: #{message} ++++"
+    puts "++++ Vendor: #{vendor} ++++"
+    puts "++++ Order: #{order} ++++"
+    puts "++++ Product: #{product_type} ++++"
+    puts "++++ Is Human: #{is_human}"
     puts "********************************************"
     puts "********************************************"
-    form_submission = Spree::Message.new({email: email, name: name, message: message})
+    form_submission = Spree::Message.new({source: source, name: name, email: email, message: message, order_id: order, taxon_id: product_type, phone: phone, company: company, vendor: vendor})
 
     puts "[[[[[[[[[[[[[[[[[[[[[#{form_submission.inspect}]]]]]]]]]]]]]]]]]]]]]"
     # @review.product = @product
