@@ -6,6 +6,7 @@ class Spree::Admin::MessagesController < Spree::Admin::ResourceController
   
   def show
     @form = Spree::Message.find(params[:id])
+    @form.update_attribute(:viewed, true)
   end
   
   def complete
