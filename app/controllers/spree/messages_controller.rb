@@ -12,16 +12,10 @@ class Spree::MessagesController < Spree::StoreController
     phone = params[:form_submission][:phone].sub!(/\s*[^A-z0-9]*\z/,'')
     company = params[:form_submission][:company].sub!(/\s*[A-z0-9]*\z/,'')
     message = params[:form_submission][:message].sub!(/\s*[^A-z0-9]*\z/,'')
-    
-    if source == "contact"
-      order = params[:form_submission][:order].sub!(/\s*[A-z0-9]*\z/,'')
-      vendor = nil
-      product_type = nil
-    elsif source == "quote"
-      vendor = params[:form_submission][:vendor].sub!(/\s*[A-z0-9]*\z/,'')
-      product_type = params[:form_submission][:product_type].sub!(/\s*[A-z0-9]*\z/,'')
-      order = nil
-    end
+    order = params[:form_submission][:order].nil? ? nil : params[:form_submission][:order].sub!(/\s*[A-z0-9]*\z/,'') 
+    vendor = params[:form_submission][:vendor].nil? ? nil : params[:form_submission][:vendor].sub!(/\s*[A-z0-9]*\z/,'') 
+    product_type = params[:form_submission][:product_type].nil? ? nil : params[:form_submission][:product_type].sub!(/\s*[A-z0-9]*\z/,'') 
+
     is_human = params[:form_submission][:is_human].sub!(/\s*[^0-9]*\z/,'')
     
     puts "********************************************"
