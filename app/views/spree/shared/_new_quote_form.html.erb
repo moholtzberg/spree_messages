@@ -22,20 +22,11 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="SelectOrder">Select an Product Type</label>
-		<select class="form-control" id="product_type" name="form_submission[product_type]" >
-		<% Spree::Taxon.find_by(:name => "Product Type").children.each do |o| %>
-			<option id="<%= o.id %>"><%= o.name %></option>
-		<% end %>
-		</select>
+		<label for="SelectProductType">Select an Product Type</label>
+		
+		<%= select_tag "form_submission[product_type]", options_from_collection_for_select(Spree::Taxon.find_by(:name => "Product Type").children, "id", "name"), :include_blank => true, :class => "form-control" %>
+		
 	</div>
-	
-	<script>
-	$("select#product_type").change(function(event){
-		var a = $("#" + event.currentTarget.id)
-		console.log(a)
-	});
-	</script>
 	
 	<div class="form-group">
 		<label for="InputVendor">Please specify your current vendor</label>

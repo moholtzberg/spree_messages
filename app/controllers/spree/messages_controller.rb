@@ -62,6 +62,7 @@ class Spree::MessagesController < Spree::StoreController
         redirect_to "/contact"
       end
     end
+  
   end
   
 end
