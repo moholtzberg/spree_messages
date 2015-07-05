@@ -24,7 +24,7 @@
 	<% if user && user.orders %>
 		<div class="form-group">
 			<label for="SelectOrder">Select an Order</label>
-			<%= select_tag "form_submission[order]", options_for_select(user.orders.collect {|o| ["id", "#{number} - $#{total}  -  #{created_at.strftime('%m/%d/%Y')}"]}, :include_blank => true, :class => "form-control") %>
+			<%= select_tag "form_submission[order]", options_for_select(user.orders.collect {|o| ["o.id", "#{o.number} - $#{o.total}  -  #{created_at.strftime('%m/%d/%Y')}"]}, :include_blank => true, :class => "form-control") %>
 		</div>
 	<% else %>
 		<div class="form-group">
