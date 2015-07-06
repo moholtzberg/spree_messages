@@ -51,6 +51,6 @@
 		<td><%= @form.message %></td>
 	</tr>
 	<% unless @form.complete %>
-		<%= link_to "Mark Complete", admin_inquiry_update_path(@form.id) %>
+		<%= link_to "Mark Complete", complete_admin_message_path(@form.id) %>
 	<% end %>
 </table>
