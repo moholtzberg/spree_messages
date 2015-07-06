@@ -5,20 +5,18 @@ class Spree::MessagesController < Spree::StoreController
   end
   
   def create
+    puts "****************************************************************#{params[:form_submission]}"
     source = params[:form_submission][:source].sub!(/\s*[^A-z0-9]*\z/,'')
-    
     name = params[:form_submission][:name].sub!(/\s*[^A-z0-9]*\z/,'')
     email = params[:form_submission][:email].sub!(/\s*[^A-z0-9]*\z/,'')
     phone = params[:form_submission][:phone].sub!(/\s*[^A-z0-9]*\z/,'')
     company = params[:form_submission][:company].sub!(/\s*[A-z0-9]*\z/,'')
     message = params[:form_submission][:message].sub!(/\s*[^A-z0-9]*\z/,'')
-    order = params[:form_submission][:order].nil? ? nil : params[:form_submission][:order].sub!(/\s*[A-z0-9]*\z/,'') 
-    vendor = params[:form_submission][:vendor].nil? ? nil : params[:form_submission][:vendor].sub!(/\s*[A-z0-9]*\z/,'') 
-    product_type = params[:form_submission][:product_type].nil? ? nil : params[:form_submission][:product_type].sub!(/\s*[A-z0-9]*\z/,'') 
-
+    order = params[:form_submission][:order].nil? ? nil : params[:form_submission][:order].sub!(/\s*[^A-z0-9]*\z/,'') 
+    vendor = params[:form_submission][:vendor].nil? ? nil : params[:form_submission][:vendor].sub!(/\s*[^A-z0-9]*\z/,'') 
+    product_type = params[:form_submission][:product_type].nil? ? nil : params[:form_submission][:product_type].sub!(/\s*[^A-z0-9]*\z/,'') 
     is_human = params[:form_submission][:is_human].sub!(/\s*[^0-9]*\z/,'')
     
-    puts "********************************************"
     puts "********************************************"
     puts "********************************************"
     puts "++++ Source: #{source} ++++"
