@@ -34,7 +34,7 @@
 	<% if @form.source == "contact" %>
 	<tr>
 		<td>Order</td>
-		<td><%= link_to @form.order.number, admin_order_path(@form.order.id) %></td>
+		<td><%= link_to @form.order.number, admin_order_path(@form.order.id) unless @form.order.nil? %></td>
 	</tr>
 	<% elsif @form.source == "quote" %>
 	<tr>
