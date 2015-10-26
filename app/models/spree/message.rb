@@ -8,5 +8,7 @@ class Spree::Message < ActiveRecord::Base
   belongs_to :taxon, :class_name => Spree::Taxon
   validates :name, presence: true
   validates :email, presence: true
+  
+  scope :unread, -> { where(:viewed => nil) }
   # validates :is_human, presence: true
 end

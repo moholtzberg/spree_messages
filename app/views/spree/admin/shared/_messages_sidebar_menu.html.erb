@@ -1,5 +1,6 @@
 <% if can? [:admin, :support], Spree::Message %>
 <ul class="nav nav-sidebar">
-  <%= tab Spree::Message, url: spree.admin_messages_url, icon: 'envelope', label: Spree::Message.model_name.human(count: :many) %>
+	<%# tab Spree::Message, url: spree.admin_messages_url, icon: 'envelope', label: "#{Spree::Message.model_name.human(count: :many)} <span class='badge'>#{Spree::Message.unread.count}</span>" %>
+	<%= tab Spree::Message, url: spree.admin_messages_url, icon: 'envelope', label: "Messages <span class='badge'>#{Spree::Message.unread.count}</span>" %>
 </ul>
 <% end %>

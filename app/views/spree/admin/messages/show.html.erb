@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-	<%= Spree.t('inquiry') %> <%= @form.id %>
+	<%= Spree.t('message') %> <%= @form.id %>
 <% end %>
 
 <% content_for :table_filter_title do %>
@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<td>Email</td>
-		<td><%= @form.email %></td>
+		<td><% if Spree::User.find_by_email(@form.email) %><%= link_to Spree::User.find_by_email(@form.email).email, Spree::User.find_by_email(@form.email) %><% else %><%= @form.email %><% end %></td>
 	</tr>
 	<tr>
 		<td>Name</td>

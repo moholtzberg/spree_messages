@@ -46,7 +46,7 @@
 					<%= review.email %>
 				</td>
 				<td>
-					<%= review.viewed %>
+					<% if review.viewed %><span class="badge"><i class="icon icon-ok"></i></span><% end %>
 				</td>
 				<td class="align-right">
 					<%= l review.created_at, :format => :short %>
